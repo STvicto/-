@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>калькулятор</title>
+</head>
+<body>
+    <input id="num1" class="input" class="HW1" type="number" placeholder="Введите первое число"/>
+    <input id="num2" class="input" class="HW2" type="number" placeholder="Введите второе число"/>
+
+    <div id="operator_btns">
+        <button id="plus">+</button>
+        <button id="minus">-</button>
+        <button id="times">x</button>
+        <button id="divide">:</button>
+    </div>
+    <div id="result"></div> 
+  
+    <script>
+        function calculate(op) {
+            var num1 = Number(document.getElementById("num1").value);
+            var num2 = Number(document.getElementById("num2").value);
+            var result;
+            
+            switch(op) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 !== 0) {
+                        result = num1 / num2;
+                    } else {
+                        result = "на 0 делить нельзя!";
+                    }
+                    break;
+            }
+            document.getElementById("result").innerText = result; 
+        }
+
+        document.getElementById("plus").addEventListener("click", function() { calculate('+'); });
+        document.getElementById("minus").addEventListener("click", function() { calculate('-'); });
+        document.getElementById("times").addEventListener("click", function() { calculate('*'); });
+        document.getElementById("divide").addEventListener("click", function() { calculate('/'); });
+    </script>
+</body>
+</html>
