@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Сохранение текста</title>
+</head>
+<body>
+    <input type="text" id="myInput" class="input4" placeholder="Введите ваше выражение">
+    <button id="vivod" class="button2" unselectable="on">вывести</button>
+    <div class="results">
+        <p>здесь будет </br> результат</p></div>
+        <style>
+            .input4 {
+    height: 16px;
+    width: 500px;
+    border-radius: 80px;
+    font-size: 40px;
+    padding: 100px;
+    margin-top: 100px;
+    margin-left: 150px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(119, 173, 255);
+    border: 2px rgb(7, 28, 255) solid;
+    box-shadow: 50px 20px 10px rgb(205, 205, 205);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}   
+.button2 {
+    height: 150px;
+    width: 300px;
+    margin-left: 100px;
+    border-radius: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(119, 173, 255);
+    border: 2px rgb(7, 28, 255) solid;
+    box-shadow: 20px 10px 10px rgb(205, 205, 205);
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+}
+.input4::placeholder {
+    color: black;
+    text-align: center;
+}
+
+
+.input4, .button2, .results {
+    opacity: 0; /* Скрываем элементы изначально */
+    transform: translateY(50px); /* Сдвигаем элементы вниз */
+    animation: slideIn 1s forwards; /* Применяем анимацию */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Плавный переход для результата */
+.results {
+    margin-top: 20px;
+    font-size: 20px;
+}
+.results{
+    font-size: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
+    margin-top: 50px;
+    margin-left: 35%;
+    height: 100px;
+    width: 400px;
+    background-color: rgb(119, 173, 255);
+    border: 2px black solid;
+    border-radius: 80px;
+    padding-top: 75px;
+    text-align: center;
+    box-shadow: 20px 10px 10px rgb(205, 205, 205);
+
+    
+}
+.results p{
+    margin: 0px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+body {
+    background-color: rgb(231, 231, 231);
+}
+.input4:hover{
+    background-color: rgb(83, 151, 252);
+    border-radius: 1000px;
+    transition: all 5s ease;
+}
+.button2:hover{
+    background-color: rgb(83, 151, 252);
+    border-radius: 1000px;
+    transition: all 5s ease;
+}
+.results:hover{
+    background-color: rgb(83, 151, 252);
+    border-radius: 1000px;
+    transition: all 5s ease;
+}
+        </style>
+    
+    <script>
+
+        const inputElement = document.getElementById('myInput');
+        const buttonElement = document.getElementById('vivod');
+        
+
+
+        function saveText() {
+            localStorage.setItem('savedText', inputElement.value);
+        }
+
+       
+        function loadText() {
+            const savedText = localStorage.getItem('savedText');
+            if (savedText) {
+                inputElement.value = savedText;
+            }
+        }
+
+      
+        loadText();
+
+        function vivod2() {
+            const inputValue = inputElement.value;
+            let result;
+
+            try {
+           
+                result = eval(inputValue);
+         
+                document.querySelector('.results').innerText = result;
+            } catch (error) {
+           
+                document.querySelector('.results').innerText = 'Ошибка в выражении';
+            }
+
+            saveText();
+        }
+
+     
+        inputElement.addEventListener('input', saveText);
+
+        buttonElement.addEventListener("click", vivod2, false);
+    </script>
+</body>
+</html> 
