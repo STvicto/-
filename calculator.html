@@ -1,156 +1,218 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Сохранение текста</title>
-</head>
-<body>
-    <input type="text" id="myInput" class="input4" placeholder="Введите ваше выражение">
-    <button id="vivod" class="button2" unselectable="on">вывести</button>
-    <div class="results">
-        <p>здесь будет </br> результат</p></div>
-        <style>
-            .input4 {
-    height: 16px;
-    width: 500px;
-    border-radius: 80px;
-    font-size: 40px;
-    padding: 100px;
-    margin-top: 100px;
-    margin-left: 150px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(119, 173, 255);
-    border: 2px rgb(7, 28, 255) solid;
-    box-shadow: 50px 20px 10px rgb(205, 205, 205);
-    color: rgb(0, 0, 0);
-    text-align: center;
-}   
-.button2 {
-    height: 150px;
-    width: 300px;
-    margin-left: 100px;
-    border-radius: 60px;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(119, 173, 255);
-    border: 2px rgb(7, 28, 255) solid;
-    box-shadow: 20px 10px 10px rgb(205, 205, 205);
-    color: rgb(0, 0, 0);
-    font-size: 30px;
-}
-.input4::placeholder {
-    color: black;
-    text-align: center;
-}
-
-
-.input4, .button2, .results {
-    opacity: 0; /* Скрываем элементы изначально */
-    transform: translateY(50px); /* Сдвигаем элементы вниз */
-    animation: slideIn 1s forwards; /* Применяем анимацию */
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Плавный переход для результата */
-.results {
-    margin-top: 20px;
-    font-size: 20px;
-}
-.results{
-    font-size: 40px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif  ;
-    margin-top: 50px;
-    margin-left: 35%;
-    height: 100px;
-    width: 400px;
-    background-color: rgb(119, 173, 255);
-    border: 2px black solid;
-    border-radius: 80px;
-    padding-top: 75px;
-    text-align: center;
-    box-shadow: 20px 10px 10px rgb(205, 205, 205);
-
-    
-}
-.results p{
-    margin: 0px;
-    text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-body {
-    background-color: rgb(231, 231, 231);
-}
-.input4:hover{
-    background-color: rgb(83, 151, 252);
-    border-radius: 1000px;
-    transition: all 5s ease;
-}
-.button2:hover{
-    background-color: rgb(83, 151, 252);
-    border-radius: 1000px;
-    transition: all 5s ease;
-}
-.results:hover{
-    background-color: rgb(83, 151, 252);
-    border-radius: 1000px;
-    transition: all 5s ease;
-}
-        </style>
-    
-    <script>
-
-        const inputElement = document.getElementById('myInput');
-        const buttonElement = document.getElementById('vivod');
-        
-
-
-        function saveText() {
-            localStorage.setItem('savedText', inputElement.value);
-        }
-
+    <title>Калькулятор</title>
+    <style>
        
-        function loadText() {
-            const savedText = localStorage.getItem('savedText');
-            if (savedText) {
-                inputElement.value = savedText;
-            }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, Helvetica, sans-serif;
         }
-
+    
+        .number {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 200px;
+            height: 60px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: right;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    
+        .button {
+            height: 60px;
+            width: 60px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+            margin: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #eaeaea;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    
+        .del {
+            background-color: #ff4d4d;
+            color: white;
+        }
+    
+        .del:hover {
+            background-color: #ff1a1a;
+        }
+    
+        .calculate {
+            background-color: #4caf50;
+            color: white;
+        }
+    
+        .calculate:hover {
+            background-color: #45a049;
+        }
+    
       
-        loadText();
-
-        function vivod2() {
-            const inputValue = inputElement.value;
-            let result;
-
-            try {
-           
-                result = eval(inputValue);
-         
-                document.querySelector('.results').innerText = result;
-            } catch (error) {
-           
-                document.querySelector('.results').innerText = 'Ошибка в выражении';
-            }
-
-            saveText();
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 300px;
         }
+    </style>
+    </head>
+    <body>
+    
+        <div class="number" id="display"></div>
+        <div class="buttons-container">
+            <div class="button button1">1</div>
+            <div class="button button2">2</div>
+            <div class="button button3">3</div>
+            <div class="button button4">4</div>
+            <div class="button button5">5</div>
+            <div class="button button6">6</div>
+            <div class="button button7">7</div>
+            <div class="button button8">8</div>
+            <div class="button button9">9</div>
+            <div class="button button0">0</div>
+            <div class="button buttonSH">:</div>
+            <div class="button buttonM">*</div>
+            <div class="button buttonF">+</div>
+            <div class="button buttonS">-</div>
+            <div class="button calculate">=</div>
+            <div class="button del">С</div>
+            <div class="button comma">,</div>
+            <div class="button percent">%</div>
+        </div>
+    
+    </body>
+    
+   
 
-     
-        inputElement.addEventListener('input', saveText);
+    <script>
+        let percent = document.querySelector(".percent");
+        let comma = document.querySelector(".comma")
+        let calculate = document.querySelector(".calculate");
+        let button1 = document.querySelector(".button1");
+        let button2 = document.querySelector(".button2");
+        let button3 = document.querySelector(".button3");
+        let button4 = document.querySelector(".button4");
+        let button5 = document.querySelector(".button5");
+        let button6 = document.querySelector(".button6");
+        let button7 = document.querySelector(".button7");
+        let button8 = document.querySelector(".button8");
+        let button9 = document.querySelector(".button9");
+        let button0 = document.querySelector(".button0");
+        let buttonSH = document.querySelector(".buttonSH");
+        let buttonM = document.querySelector(".buttonM");
+        let buttonF = document.querySelector(".buttonF");
+        let buttonS = document.querySelector(".buttonS");
+        let numberDisplay = document.querySelector(".number");  // Добавляем элемент для отображения
+        let del = document.querySelector(".del");
 
-        buttonElement.addEventListener("click", vivod2, false);
+        let result = "";
+
+        button1.addEventListener("click", function() {
+            result = result + "1";
+            numberDisplay.textContent = result; // Обновляем отображение
+        });
+        percent.addEventListener("click", function() {
+            result += "%";
+            numberDisplay.textContent = result;
+
+        })
+
+        button2.addEventListener("click", function() {
+            result = result + "2";
+            numberDisplay.textContent = result;
+        });
+        comma.addEventListener("click", function() {
+            result = result + ",";
+            numberDisplay.textContent = result;
+        })
+
+        button3.addEventListener("click", function() {
+            result = result + "3";
+            numberDisplay.textContent = result;
+        });
+
+        button4.addEventListener("click", function() {
+            result = result + "4";
+            numberDisplay.textContent = result;
+        });
+
+        button5.addEventListener("click", function() {
+            result = result + "5";
+            numberDisplay.textContent = result;
+        });
+
+        button6.addEventListener("click", function() {
+            result = result + "6";
+            numberDisplay.textContent = result;
+        });
+
+        button7.addEventListener("click", function() {
+            result = result + "7";
+            numberDisplay.textContent = result;
+        });
+
+        button8.addEventListener("click", function() {
+            result = result + "8";
+            numberDisplay.textContent = result;
+        });
+
+        button9.addEventListener("click", function() {
+            result = result + "9";
+            numberDisplay.textContent = result;
+        });
+
+        button0.addEventListener("click", function() {
+            result = result + "0";
+            numberDisplay.textContent = result;
+        });
+
+        buttonSH.addEventListener("click", function() {
+            result = result + "/";
+            numberDisplay.textContent = result;
+        });
+
+        buttonM.addEventListener("click", function() {
+            result = result + "*";
+            numberDisplay.textContent = result;
+        });
+
+        buttonF.addEventListener("click", function() {
+            result = result + "+";
+            numberDisplay.textContent = result;
+        });
+
+        buttonS.addEventListener("click", function() {
+            result = result + "-";
+            numberDisplay.textContent = result;
+        });
+        calculate.addEventListener("click", function() {
+            numberDisplay.textContent = eval(result);
+        });
+        del.addEventListener("click", function() {
+            result = "";
+            numberDisplay.textContent = result; 
+        })
+       
+
+
     </script>
 </body>
-</html> 
+</html>
