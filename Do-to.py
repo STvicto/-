@@ -1,5 +1,5 @@
 task = set()
-task_F = list()
+task_F = set()
 task_T = set()
 while True:
     WDYW = input("Что вы хотите? просмотреть все задачи,посмотреть статус всех задач добавить задачу,\n убрать задачу, посмотреть выполненые задачи, посмотреть незаконченные задачи\n изменить статус задачи, посмотреть статус задачи\n \n")
@@ -66,6 +66,4 @@ while True:
           print("Вашей задачи нету")
        if Tasklook not in task_T and Tasklook not in task_F and Tasklook  in task:
           print("ваша задача нейтральна")
-    elif WDYW == "посмотреть статус всех задач":
-       for i in task_F:
-          print("Выполненые: {}".format(i))
+ 
