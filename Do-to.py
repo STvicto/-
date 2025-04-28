@@ -66,4 +66,8 @@ while True:
           print("Вашей задачи нету")
        if Tasklook not in task_T and Tasklook not in task_F and Tasklook  in task:
           print("ваша задача нейтральна")
- 
+    elif WDYW == "посмотреть статус всех задач":
+       for i in task_F:
+          print("не выполненые: {}".format(i))
+       for i in task_T:
+          print("Выполненые: {}".format(i))
